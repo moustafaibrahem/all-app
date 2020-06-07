@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:all/src/home_sreen.dart';
 import 'package:all/src/first_screen.dart';
 import 'package:all/src/second_screen.dart';
 import 'package:all/src/third_screen.dart';
 import 'package:all/src/forth_screen.dart';
 import 'package:all/src/fifth_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:all/src/sixth_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/third': (context) => ThirdScreen(),
         '/forth': (context) => Forthscreen(),
         '/fifth': (context) => Fifthscreen(),
+        '/sixth': (context) => Sixthscreen(),
       },
       initialRoute: '/',
     );

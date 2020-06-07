@@ -47,11 +47,11 @@ class Secondscreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                child: MyCard(icon: Icon(Icons.phone), text: "+010 6789 3079"),
+                child: myCard(icon: Icon(Icons.phone), text: "+010 6789 3079"),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                child: MyCard(
+                child: myCard(
                     icon: Icon(Icons.email),
                     text: 'moustafa.ibrahem56@gmail.com'),
               )
@@ -63,7 +63,7 @@ class Secondscreen extends StatelessWidget {
   }
 }
 
-Card MyCard({Icon icon, String text}) {
+Card myCard({Icon icon, String text}) {
   return Card(
     margin: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
     child: ListTile(

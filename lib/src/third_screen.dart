@@ -7,12 +7,12 @@ class ThirdScreen extends StatefulWidget {
 }
 
 class _ThirdScreenState extends State<ThirdScreen> {
-  int leftDiceeNumber = 1, RightDiceeNumber = 1;
+  int leftDiceeNumber = 1, rightDiceeNumber = 1;
 
-  void ChangeDiceFace() {
+  void changeDiceFace() {
     setState(() {
       leftDiceeNumber = Random().nextInt(6) + 1;
-      RightDiceeNumber = Random().nextInt(6) + 1;
+      rightDiceeNumber = Random().nextInt(6) + 1;
     });
   }
 
@@ -30,15 +30,15 @@ class _ThirdScreenState extends State<ThirdScreen> {
               child: FlatButton(
                 child: Image.asset('images/dice$leftDiceeNumber.png'),
                 onPressed: () {
-                  ChangeDiceFace();
+                  changeDiceFace();
                 },
               ),
             ),
             Expanded(
               child: FlatButton(
-                child: Image.asset('images/dice$RightDiceeNumber.png'),
+                child: Image.asset('images/dice$rightDiceeNumber.png'),
                 onPressed: () {
-                  ChangeDiceFace();
+                  changeDiceFace();
                 },
               ),
             ),

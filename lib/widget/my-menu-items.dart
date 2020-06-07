@@ -24,20 +24,21 @@ class MyMenuItems extends StatelessWidget {
             },
           ),
         ),
-        MyCard(context, Icon(Icons.apps), "I AM RICH App", '/first'),
-        MyCard(context, Icon(Icons.apps), "MI CARD App", '/second'),
-        MyCard(context, Icon(Icons.apps), "DICEE App", '/third'),
-        MyCard(context, Icon(Icons.apps), "MAGIC 8 BALL App", '/forth'),
-        MyCard(context, Icon(Icons.apps), "XYLOPHONE", '/fifth'),
+        myCard(context, Icon(Icons.apps), "I AM RICH App", '/first'),
+        myCard(context, Icon(Icons.apps), "MI CARD App", '/second'),
+        myCard(context, Icon(Icons.apps), "DICEE App", '/third'),
+        myCard(context, Icon(Icons.apps), "MAGIC 8 BALL App", '/forth'),
+        myCard(context, Icon(Icons.apps), "XYLOPHONE", '/fifth'),
+        myCard(context, Icon(Icons.apps), "QUIZZLER ", '/sixth'),
       ],
     );
   }
 }
 
-Card MyCard(context, Icon MYicon, String txt, String dist) {
+Card myCard(context, Icon mYicon, String txt, String dist) {
   return Card(
     child: ListTile(
-      leading: MYicon,
+      leading: mYicon,
       title: Text(
         txt,
         style: TextStyle(
