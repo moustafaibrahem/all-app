@@ -6,6 +6,7 @@ import 'package:all/src/third_screen.dart';
 import 'package:all/src/forth_screen.dart';
 import 'package:all/src/fifth_screen.dart';
 import 'package:all/src/sixth_screen.dart';
+import 'package:all/src/seventh_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/forth': (context) => Forthscreen(),
         '/fifth': (context) => Fifthscreen(),
         '/sixth': (context) => Sixthscreen(),
+        '/seventh': (context) => Seventhscreen(),
       },
       initialRoute: '/',
     );

@@ -28,8 +28,9 @@ class MyMenuItems extends StatelessWidget {
         myCard(context, Icon(Icons.apps), "MI CARD App", '/second'),
         myCard(context, Icon(Icons.apps), "DICEE App", '/third'),
         myCard(context, Icon(Icons.apps), "MAGIC 8 BALL App", '/forth'),
-        myCard(context, Icon(Icons.apps), "XYLOPHONE", '/fifth'),
-        myCard(context, Icon(Icons.apps), "QUIZZLER ", '/sixth'),
+        myCard(context, Icon(Icons.apps), "XYLOPHONE App", '/fifth'),
+        myCard(context, Icon(Icons.apps), "QUIZZLER App", '/sixth'),
+        myCard(context, Icon(Icons.apps), "Destini App", '/seventh'),
       ],
     );
   }
