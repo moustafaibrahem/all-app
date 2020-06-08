@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   audioplayers: ^0.15.1
   assets_audio_player: ^2.0.1
+  rflutter_alert: ^1.0.3
 
 
 dev_dependencies:
