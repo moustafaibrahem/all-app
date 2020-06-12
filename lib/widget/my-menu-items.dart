@@ -31,6 +31,7 @@ class MyMenuItems extends StatelessWidget {
         myCard(context, Icon(Icons.apps), "XYLOPHONE App", '/fifth'),
         myCard(context, Icon(Icons.apps), "QUIZZLER App", '/sixth'),
         myCard(context, Icon(Icons.apps), "Destini App", '/seventh'),
+        myCard(context, Icon(Icons.apps), "BMI Calculator App", '/eighth'),
       ],
     );
   }
