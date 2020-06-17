@@ -1,4 +1,3 @@
-import 'package:all/src/ninth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:all/src/home_sreen.dart';
 import 'package:all/src/first_screen.dart';
@@ -27,7 +26,6 @@ class MyApp extends StatelessWidget {
         '/sixth': (context) => Sixthscreen(),
         '/seventh': (context) => Seventhscreen(),
         '/eighth': (context) => Eighthscreen(),
-        '/ninth': (context) => Ninthscreen(),
       },
       initialRoute: '/',
     );
