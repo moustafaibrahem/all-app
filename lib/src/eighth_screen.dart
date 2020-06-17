@@ -1,12 +1,17 @@
+import 'package:all/utilites/bottom_button.dart';
+import 'package:all/utilites/icon_content.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:all/utilites/ReusableCard.dart';
-import 'package:all/utilites/ReusableColumn.dart';
+import 'package:all/utilites/reusable_card.dart';
+import 'package:all/utilites/round_icon_button.dart';
+import 'package:all/utilites/constants.dart';
+import 'package:all/src/ninth_screen.dart';
+import 'package:all/classes/calculator_brain.dart';
 
-const heightwidget = 40.0;
-const concolor = Color(0xFF1D1E33);
-const unconcolor = Color(0xFF111238);
-const btncolor = Color(0xFFEB1555);
+enum Gender {
+  male,
+  female,
+}
 
 class Eighthscreen extends StatefulWidget {
   @override
@@ -14,74 +19,105 @@ class Eighthscreen extends StatefulWidget {
 }
 
 class _EighthscreenState extends State<Eighthscreen> {
-  Color maleCardColor = unconcolor;
-  Color femaleCardColor = unconcolor;
-
-  void updateColor(int gender) {
-    if (gender == 1) {
-      if (maleCardColor == unconcolor) {
-        maleCardColor = concolor;
-      } else {
-        maleCardColor = unconcolor;
-      }
-    }
-  }
+  Gender selectedGender;
+  int height = 180;
+  int weight = 60;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('BMI CALCULATOR'),
-        centerTitle: true,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        updateColor(1);
-                      });
-                    },
-                    child: ReusableCard(
-                      color: maleCardColor,
-                      cardchild: ReusableColumn(
-                        icon: Icon(
-                          FontAwesomeIcons.mars,
-                          size: 80.0,
-                        ),
-                        txt: 'Male',
-                      ),
-                    ),
+              child: Row(
+            children: <Widget>[
+              Expanded(
+                child: ReusableCard(
+                  onPress: () {
+                    setState(() {
+                      selectedGender = Gender.male;
+                    });
+                  },
+                  colour: selectedGender == Gender.male
+                      ? kActiveCardColour
+                      : kInactiveCardColour,
+                  cardChild: IconContent(
+                    icon: FontAwesomeIcons.mars,
+                    label: 'MALE',
                   ),
                 ),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {});
-                    },
-                    child: ReusableCard(
-                      color: femaleCardColor,
-                      cardchild: ReusableColumn(
-                        icon: Icon(
-                          FontAwesomeIcons.venus,
-                          size: 80.0,
-                        ),
-                        txt: 'Female',
-                      ),
-                    ),
+              ),
+              Expanded(
+                child: ReusableCard(
+                  onPress: () {
+                    setState(() {
+                      selectedGender = Gender.female;
+                    });
+                  },
+                  colour: selectedGender == Gender.female
+                      ? kActiveCardColour
+                      : kInactiveCardColour,
+                  cardChild: IconContent(
+                    icon: FontAwesomeIcons.venus,
+                    label: 'FEMALE',
                   ),
                 ),
-              ],
-            ),
-          ),
+              ),
+            ],
+          )),
           Expanded(
-            child: Expanded(
-              child: ReusableCard(
-                color: concolor,
+            child: ReusableCard(
+              colour: kActiveCardColour,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: <Widget>[
+                      Text(
+                        height.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Text(
+                        'cm',
+                        style: kLabelTextStyle,
+                      )
+                    ],
+                  ),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      inactiveTrackColor: Color(0xFF8D8E98),
+                      activeTrackColor: Colors.white,
+                      thumbColor: Color(0xFFEB1555),
+                      overlayColor: Color(0x29EB1555),
+                      thumbShape:
+                          RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                      overlayShape:
+                          RoundSliderOverlayShape(overlayRadius: 30.0),
+                    ),
+                    child: Slider(
+                      value: height.toDouble(),
+                      min: 120.0,
+                      max: 220.0,
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -90,22 +126,108 @@ class _EighthscreenState extends State<Eighthscreen> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    color: concolor,
+                    colour: kActiveCardColour,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                }),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: concolor,
+                    colour: kActiveCardColour,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(
+                                  () {
+                                    age--;
+                                  },
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                })
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            color: btncolor,
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: heightwidget,
+          BottomButton(
+            buttonTitle: 'CALCULATE',
+            onTap: () {
+              CalculatorBrain calc =
+                  CalculatorBrain(height: height, weight: weight);
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Ninthscreen(
+                    bmiResult: calc.calculateBMI(),
+                    resultText: calc.getResult(),
+                    interpretation: calc.getInterpretation(),
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),
